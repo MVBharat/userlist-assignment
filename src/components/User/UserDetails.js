@@ -24,7 +24,7 @@ function UserDetails(props) {
     return ( !props.show ? null
         :            
         <div className="UserDetails">
-            <h2>Get User Active Details</h2>
+            <h2> {props.member.real_name} Active Details</h2>
             <button onClick={props.closeModal} className="closeButton">x</button>
             {
                 matchedDate ?
