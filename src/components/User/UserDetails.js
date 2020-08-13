@@ -1,31 +1,38 @@
 import React from 'react'
 import styles from './UserDetails.css';
-import data from '../../TestJSON.json'
-
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 function UserDetails(props) {
+    
+    let selectedDate = props.date
+    let mySelectedDate = selectedDate.toLocaleString('default', { month: 'short' }) + ',' + selectedDate.getDate()  + ',' + selectedDate.getFullYear() 
+    
+    let matchedDate
+    let startTime 
+    let endTime    
+
+    props.member.activity_periods.map( e => {        
+        if(mySelectedDate === e.start_time.split(' ').splice(0,3).join()){
+            matchedDate = e.start_time.split(' ').splice(0,3).join()
+            startTime = e.start_time.split(' ').splice(3,4).join()
+            endTime = e.end_time.split(' ').splice(3,4).join()
+        }
+    })
+
+
     return ( !props.show ? null
-    :        
+        :            
         <div className="UserDetails">
-            User Details
+            <h2>Get User Active Details</h2>
             <button onClick={props.closeModal} className="closeButton">x</button>
             {
-                data.members.map((member, index) => {
-                    let  udate = props.date
-                    let mydate = member.activity_periods[0].start_time
-                    console.log(  mydate.split(' ').splice(0,3).join().replace(',' , ' ') )
-
-                    console.log( "udate ==> ",  (udate.getMonth()+1) + ' ' + udate.getDate()  + ',' + udate.getFullYear() );
-                    if (props.date === member.activity_periods[0].start_time) 
-                    return  <p key={index}>
-                        {member.activity_periods[0].start_time } | 
-                        {member.activity_periods[0].end_time }
-                    </p> 
-                    else  return <p>Not actived</p>
-                    
-                })
+                matchedDate ?
+                <p>
+                    Start Time: {startTime} | 
+                    End Time : {endTime}                                                    
+                </p> 
+                : <p className="notActive">Not Active on this day pelase check other date</p>                    
               }                
 
             <Calendar

@@ -3,5 +3,8 @@
 }
 
 ul>li {
-  text-decoration: none;
+  list-style-type: none;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 10px;
 }
