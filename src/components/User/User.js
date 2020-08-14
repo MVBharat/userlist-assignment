@@ -11,8 +11,6 @@ class User extends React.Component {
     }
   
     popupModalHandler = () => this.setState({ show: !this.state.show })
-
-    closeModal = () => this.setState({ show: !this.state.show })
         
     onDateChange = date => this.setState({ date })
 
@@ -27,7 +25,7 @@ class User extends React.Component {
                             date={this.state.date} 
                             member={this.props.member} 
                             onChange={this.onDateChange} 
-                            closeModal={this.closeModal} 
+                            closeModal={this.popupModalHandler} 
                             />
 
             </React.Fragment>
