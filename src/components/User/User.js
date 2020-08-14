@@ -8,23 +8,13 @@ class User extends React.Component {
           show: false,
           date: new Date(),
       }
-      this.popupModalHandler = this.popupModalHandler.bind(this)
-      this.closeModal = this.closeModal.bind(this)
     }
   
-    popupModalHandler(){
-        this.setState(state => ({
-            show: !this.state.show
-            })
-        )
-    }
-    closeModal(){
-        this.setState(state=>({
-            show: false
-        })
-        )
-    }
-    onChange = date => this.setState({ date })
+    popupModalHandler = () => this.setState({ show: !this.state.show })
+
+    closeModal = () => this.setState({ show: !this.state.show })
+        
+    onDateChange = date => this.setState({ date })
 
     render(){
         return (
@@ -36,7 +26,7 @@ class User extends React.Component {
                 <UserDetails show={this.state.show}
                             date={this.state.date} 
                             member={this.props.member} 
-                            onChange={this.onChange} 
+                            onChange={this.onDateChange} 
                             closeModal={this.closeModal} 
                             />
 

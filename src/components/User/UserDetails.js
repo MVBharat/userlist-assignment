@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './UserDetails.css';
+import './UserDetails.css';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -19,7 +19,6 @@ function UserDetails(props) {
             endTime = e.end_time.split(' ').splice(3,4).join()
         }
     })
-
 
     return ( !props.show ? null
         :            
